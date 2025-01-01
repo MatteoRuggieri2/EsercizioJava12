@@ -25,8 +25,6 @@ Codifica manualmente il file `matrice.txt` con valori numerici da leggere:
 - In caso di dimensioni incongruenti (il numero delle colonne richieste è maggiore di quelle presenti nel file), restituire **"INVALID_DATA"**
 - In caso di valore non numerico all'interno del file, restituire **"NOT-NUMERIC-VALUE"**
 
----------------- continuare da qui --------------------
-
 #### Output
 
 - Stampare la matrice acquisita da file
