@@ -11,6 +11,8 @@ public class Main {
 		 * un'enumerazione per il ritorno di sigle per ogni errore
 		 * 
 		 * Cerca la traccia dell'esercizio nella email*/
+		
+		StampaMatriceDaFile smdf = new StampaMatriceDaFile("src/files/sdf.txt", 3, 3);
 
 	}
 
