@@ -6,25 +6,35 @@ import java.io.FileReader;
 
 public class StampaMatriceDaFile {
 	
+	private File file;
+	
+	public void setFile(String fileName) {
+		this.file = new File(fileName);		
+	}
+	
 	StampaMatriceDaFile (String fileName, int numRighe, int numColonne) {
-		this.stampa(fileName, numRighe, numColonne);
+		setFile(fileName);
+		stampa(fileName, numRighe, numColonne);
 	}
 
 	public String stampa (String fileName, int numRighe, int numColonne) {
 		
-		// Controllo l'esistenza del file
-		File file = new File(fileName);
-		try {
-			FileReader fr = new FileReader(file);
-		} catch (FileNotFoundException e) {
-			System.out.println("INVALID-FILE-NAME | Non è stato trovato alcun file al seguente path: \"" + fileName + "\"");
-			e.printStackTrace();
-		}
+		ifFileExists(this.file);
 		
 		return "";
 	}
 	
-	// Funzione che controlli l'esistenza del file
+	// Funzione che controlla l'esistenza del file
+	public boolean ifFileExists(File fileToCheck) {
+		try {
+			FileReader fr = new FileReader(fileToCheck);
+			return true;
+		} catch (FileNotFoundException e) {
+			System.out.println("INVALID-FILE-NAME | Non è stato trovato alcun file al seguente path: \"" + this.file.getPath() + "\"");
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	// Funzione che legge il file
 
