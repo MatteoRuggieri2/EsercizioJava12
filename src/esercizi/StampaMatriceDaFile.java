@@ -33,16 +33,34 @@ public class StampaMatriceDaFile {
 	
 	StampaMatriceDaFile (String fileName, int numRighe, int numColonne) {
 		setFile(fileName);
-		stampa(fileName, numRighe, numColonne);
+		setNumRighe(numRighe);
+		setNumColonne(numColonne);
+		
+		System.out.println(stampa(fileName, numRighe, numColonne));
 	}
 
 	
 	
 	public String stampa (String fileName, int numRighe, int numColonne) {
 		
+		/* Potresti provare a fare un unico metodo checkFile() che controlla le varie
+		 * cose e se trova errori ritorna diverse stringhe.
+		 * Il lato positivo di questo approccio è quello di avere meno codice duplicato,
+		 * però ci sarà tanta roba nello stesso metodo.
+		 * L'altro approccio sarebbe quello di fare un metodo per ogni controllo,
+		 * questo però richiederebbe più risorse dato che bisognerebbe ceare un nuovo
+		 * FileReader e un nuovo BufferReader per ogni metodo. */
+		
 		if (!ifFileExists(this.file)) {
 			return "INVALID-FILE-NAME";
 		}
+		
+		// Controllo che i token siano tutti numeri
+		if (!checkFileIntToken(this.file)) {
+			return "NOT-NUMERIC-VALUE";
+		}
+		
+		// Controllo il numero di righe e di colonne
 		
 		readFile(this.file);
 		
@@ -56,13 +74,49 @@ public class StampaMatriceDaFile {
 			return true;
 		} catch (FileNotFoundException e) {
 			System.out.println("Non è stato trovato alcun file al seguente path: \"" + this.file.getPath() + "\"");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 	}
 	
+	public boolean checkFileIntToken(File fileToCheck) {
+		try {
+			FileReader fr = new FileReader(fileToCheck);
+		
+			BufferedReader br = new BufferedReader(fr);
+			String line = br.readLine();
+			
+			// Finchè c'è una riga
+			while (line != null) {
+			    Scanner scn = new Scanner(line);
+			    
+			    // Finchè c'è un token, controllo, se non è int ritorno "false"
+			    while (scn.hasNext()) {
+					if (!scn.hasNextInt()) {
+						scn.close();
+						return false;
+					}
+					scn.nextInt();
+					
+				}
+			    
+			    line = br.readLine(); // Leggo la riga successiva e continuo il loop
+			}
+			
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
 	// Funzione che legge il file
 	private boolean readFile (File fileToRead) {
+		
+//		int fileRowCounter = 0;
+//		int fileColumnCounter = 0;
 		
 		try {
 			FileReader fr = new FileReader(fileToRead); // Crea un lettore di file
@@ -71,10 +125,10 @@ public class StampaMatriceDaFile {
 			
 			while (line != null) {
 			    Scanner scn = new Scanner(line);
+//			    fileRowCounter++;
 			    
 			    System.out.println("Riga:");
 			    System.out.println(line + "\n");
-			    
 			    
 			    for (int i = 0; i < this.numColonne; i++) {
 			    	if (!scn.hasNextInt()) {  // Potrebbe non leggerli come int ma come stringhe
@@ -83,11 +137,9 @@ public class StampaMatriceDaFile {
 			    	}
 			    	
 			    	int currentNum = scn.nextInt();
+//			    	fileColumnCounter++;
 			    	System.out.println(currentNum);
-					
 				}
-			    
-			    
 			    
 			    line = br.readLine(); // Leggo la riga successiva e continuo il loop
 			}
@@ -99,6 +151,8 @@ public class StampaMatriceDaFile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 		
 		return true;
 	}
