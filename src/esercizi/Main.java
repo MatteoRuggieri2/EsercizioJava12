@@ -12,7 +12,7 @@ public class Main {
 		 * 
 		 * Cerca la traccia dell'esercizio nella email*/
 		
-		StampaMatriceDaFile smdf = new StampaMatriceDaFile("src/files/sdf.txt", 3, 3);
+		StampaMatriceDaFile smdf = new StampaMatriceDaFile("src/files/matrice.txt", 3, 3);
 
 	}
 

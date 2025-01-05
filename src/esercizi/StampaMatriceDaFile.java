@@ -61,10 +61,13 @@ public class StampaMatriceDaFile {
 		}
 		
 		// Controllo il numero di righe e di colonne
+		if (!checkFileStructure(this.file)) {
+			return "INVALID-DATA";
+		}
 		
 		readFile(this.file);
 		
-		return "OK";
+		return "\nOK";
 	}
 	
 	// Funzione che controlla l'esistenza del file
@@ -79,10 +82,10 @@ public class StampaMatriceDaFile {
 		}
 	}
 	
+	// Funzione che controlla che tutti i token presenti siano di tipo "int"
 	public boolean checkFileIntToken(File fileToCheck) {
 		try {
 			FileReader fr = new FileReader(fileToCheck);
-		
 			BufferedReader br = new BufferedReader(fr);
 			String line = br.readLine();
 			
@@ -100,6 +103,52 @@ public class StampaMatriceDaFile {
 					
 				}
 			    
+			    line = br.readLine(); // Leggo la riga successiva e continuo il loop
+			}
+			
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
+	public boolean checkFileStructure(File fileToCheck) {
+		
+		int fileRowCounter = 0;
+		int fileColumnCounter = 0;
+		
+		try {
+			FileReader fr = new FileReader(fileToCheck);
+			BufferedReader br = new BufferedReader(fr);
+			String line = br.readLine();
+			
+			// Finchè c'è una riga
+			while (line != null) {
+			    Scanner scn = new Scanner(line);
+			    fileRowCounter++;
+			    
+			    // Se ci sono più righe rispetto a quelle previste ritorno "false"
+			    if (fileRowCounter > this.numRighe) {
+			    	scn.close();
+					return false;
+				}
+			    
+			    // Finchè c'è un token, controllo che non siano maggiori a quelli previsti
+			    while (scn.hasNext()) {
+					scn.nextInt();
+					fileColumnCounter++;
+					
+					// Se ci sono più colonne di quelle previste ritorno "false"
+					if (fileColumnCounter > this.numColonne) {
+				    	scn.close();
+						return false;
+					}
+				}
+			    
+			    fileColumnCounter = 0;
 			    line = br.readLine(); // Leggo la riga successiva e continuo il loop
 			}
 			
