@@ -74,10 +74,14 @@ public class StampaMatriceDaFile {
 	public boolean ifFileExists(File fileToCheck) {
 		try {
 			FileReader fr = new FileReader(fileToCheck);
+			fr.close();
 			return true;
 		} catch (FileNotFoundException e) {
 			System.out.println("Non è stato trovato alcun file al seguente path: \"" + this.file.getPath() + "\"");
 //			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -103,6 +107,7 @@ public class StampaMatriceDaFile {
 					
 				}
 			    
+			    scn.close();
 			    line = br.readLine(); // Leggo la riga successiva e continuo il loop
 			}
 			
@@ -115,6 +120,7 @@ public class StampaMatriceDaFile {
 		return true;
 	}
 	
+	// Funzione che controlla che la struttura del file rispecchi le linee guida
 	public boolean checkFileStructure(File fileToCheck) {
 		
 		int fileRowCounter = 0;
@@ -148,6 +154,7 @@ public class StampaMatriceDaFile {
 					}
 				}
 			    
+			    scn.close();
 			    fileColumnCounter = 0;
 			    line = br.readLine(); // Leggo la riga successiva e continuo il loop
 			}
@@ -190,6 +197,7 @@ public class StampaMatriceDaFile {
 			    	System.out.println(currentNum);
 				}
 			    
+			    scn.close();
 			    line = br.readLine(); // Leggo la riga successiva e continuo il loop
 			}
 			
