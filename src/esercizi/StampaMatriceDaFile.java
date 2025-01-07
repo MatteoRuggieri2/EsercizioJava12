@@ -15,6 +15,8 @@ public class StampaMatriceDaFile {
 	
 	private int numColonne;
 	
+	private int[][] matrix;
+	
 	
 	
 	public void setFile(String fileName) {
@@ -171,9 +173,8 @@ public class StampaMatriceDaFile {
 	// Funzione che legge il file
 	private boolean readFile (File fileToRead) {
 		
-//		int fileRowCounter = 0;
-//		int fileColumnCounter = 0;
-		
+		//TODO:  Creo la matrice in base ai valori ricevuti (row and column)
+
 		try {
 			FileReader fr = new FileReader(fileToRead); // Crea un lettore di file
 			BufferedReader br = new BufferedReader(fr); // Crea un buffer di lettura
@@ -181,7 +182,6 @@ public class StampaMatriceDaFile {
 			
 			while (line != null) {
 			    Scanner scn = new Scanner(line);
-//			    fileRowCounter++;
 			    
 			    System.out.println("Riga:");
 			    System.out.println(line + "\n");
@@ -193,8 +193,10 @@ public class StampaMatriceDaFile {
 			    	}
 			    	
 			    	int currentNum = scn.nextInt();
-//			    	fileColumnCounter++;
 			    	System.out.println(currentNum);
+			    	
+			    	
+			    	//TODO:  Aggiungo il numero alla matrice
 				}
 			    
 			    scn.close();
@@ -214,9 +216,8 @@ public class StampaMatriceDaFile {
 		return true;
 	}
 
-	// Funzione che controlli che siano presenti 3 righe e che ogni riga abbia 3 token (int)
 	
-	// Funzione che trascriva i dati nella matrice
+	// Funzione che istanzi la matrice (this.matrix)
 	
 
 }
