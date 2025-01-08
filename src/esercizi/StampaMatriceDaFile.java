@@ -173,8 +173,9 @@ public class StampaMatriceDaFile {
 	// Funzione che legge il file
 	private boolean readFile (File fileToRead) {
 		
-		//TODO:  Creo la matrice in base ai valori ricevuti (row and column)
-
+		// Definisco la matrice in base alle righe e colonne che deve avere
+		defineMatrix();
+		
 		try {
 			FileReader fr = new FileReader(fileToRead); // Crea un lettore di file
 			BufferedReader br = new BufferedReader(fr); // Crea un buffer di lettura
@@ -218,6 +219,8 @@ public class StampaMatriceDaFile {
 
 	
 	// Funzione che istanzi la matrice (this.matrix)
-	
+	private void defineMatrix() {
+		this.matrix = new int[this.numRighe][this.numColonne];
+	}
 
 }
