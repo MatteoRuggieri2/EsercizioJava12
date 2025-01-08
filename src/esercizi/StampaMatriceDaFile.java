@@ -33,25 +33,11 @@ public class StampaMatriceDaFile {
 	
 	
 	
-	StampaMatriceDaFile (String fileName, int numRighe, int numColonne) {
+	public String stampa (String fileName, int numRighe, int numColonne) {
+		
 		setFile(fileName);
 		setNumRighe(numRighe);
 		setNumColonne(numColonne);
-		
-		System.out.println(stampa(fileName, numRighe, numColonne));
-	}
-
-	
-	
-	public String stampa (String fileName, int numRighe, int numColonne) {
-		
-		/* Potresti provare a fare un unico metodo checkFile() che controlla le varie
-		 * cose e se trova errori ritorna diverse stringhe.
-		 * Il lato positivo di questo approccio è quello di avere meno codice duplicato,
-		 * però ci sarà tanta roba nello stesso metodo.
-		 * L'altro approccio sarebbe quello di fare un metodo per ogni controllo,
-		 * questo però richiederebbe più risorse dato che bisognerebbe ceare un nuovo
-		 * FileReader e un nuovo BufferReader per ogni metodo. */
 		
 		if (!ifFileExists(this.file)) {
 			return "INVALID-FILE-NAME";
