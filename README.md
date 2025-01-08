@@ -22,7 +22,7 @@ Codifica manualmente il file `matrice.txt` con valori numerici da leggere:
 ### Lettura del file e caricamento della matrice
 
 - In caso non venga trovato un file con il nome fornito restituire **"INVALID-FILE-NAME"**
-- In caso di dimensioni incongruenti (il numero delle colonne richieste è maggiore di quelle presenti nel file), restituire **"INVALID_DATA"**
+- In caso di dimensioni incongruenti (il numero delle colonne richieste è maggiore di quelle presenti nel file), restituire **"INVALID-DATA"**
 - In caso di valore non numerico all'interno del file, restituire **"NOT-NUMERIC-VALUE"**
 
 #### Output
