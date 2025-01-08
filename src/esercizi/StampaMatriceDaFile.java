@@ -69,7 +69,8 @@ public class StampaMatriceDaFile {
 		
 		readFile(this.file);
 		
-		return "\nOK";
+		System.out.println("Matrix from file:");
+		return writeMatrix(this.matrix);
 	}
 	
 	// Funzione che controlla l'esistenza del file
@@ -80,7 +81,6 @@ public class StampaMatriceDaFile {
 			return true;
 		} catch (FileNotFoundException e) {
 			System.out.println("Non è stato trovato alcun file al seguente path: \"" + this.file.getPath() + "\"");
-//			e.printStackTrace();
 			return false;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -185,9 +185,6 @@ public class StampaMatriceDaFile {
 			while (line != null) {
 			    Scanner scn = new Scanner(line);
 			    
-			    System.out.println("Riga:");
-			    System.out.println(line + "\n");
-			    
 			    for (int i = 0; i < this.numColonne; i++) {
 			    	if (!scn.hasNextInt()) {  // Potrebbe non leggerli come int ma come stringhe
 			    		scn.close();
@@ -195,10 +192,8 @@ public class StampaMatriceDaFile {
 			    	}
 			    	
 			    	int currentNum = scn.nextInt();
-			    	System.out.println(currentNum);
 			    	
-			    	
-			    	//TODO:  Aggiungo il numero alla matrice
+			    	// Aggiungo il numero alla matrice [row][column]
 			    	this.matrix[lineNum][i] = currentNum;
 				}
 			    
@@ -224,6 +219,27 @@ public class StampaMatriceDaFile {
 	// Funzione che istanzi la matrice (this.matrix)
 	private void defineMatrix() {
 		this.matrix = new int[this.numRighe][this.numColonne];
+	}
+	
+	// Funzione che trasforma una matrice in stringa
+	private String writeMatrix(int[][] matrix) {
+		String matrixToString = "";
+		
+		for (int[] row : matrix) {
+			String rowToString = "[";
+			
+			for (int number : row) {
+				rowToString += ", " + number;
+			}
+			
+			rowToString = rowToString.replaceFirst(", ", "");
+			matrixToString += rowToString + "],\n";
+		}
+		
+		matrixToString = matrixToString.trim();
+		matrixToString = matrixToString.substring(0, matrixToString.length() - 1);
+		
+		return matrixToString;
 	}
 
 }
