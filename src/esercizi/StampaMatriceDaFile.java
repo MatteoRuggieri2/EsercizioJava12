@@ -175,6 +175,7 @@ public class StampaMatriceDaFile {
 		
 		// Definisco la matrice in base alle righe e colonne che deve avere
 		defineMatrix();
+		int lineNum = 0;
 		
 		try {
 			FileReader fr = new FileReader(fileToRead); // Crea un lettore di file
@@ -198,10 +199,12 @@ public class StampaMatriceDaFile {
 			    	
 			    	
 			    	//TODO:  Aggiungo il numero alla matrice
+			    	this.matrix[lineNum][i] = currentNum;
 				}
 			    
 			    scn.close();
 			    line = br.readLine(); // Leggo la riga successiva e continuo il loop
+			    lineNum++;
 			}
 			
 			br.close();
