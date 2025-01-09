@@ -20,14 +20,20 @@ class StampaMatriceDaFileTest {
 		assertEquals("INVALID-FILE-NAME", smdf.stampa("src/files/my-matrix.txt", 3, 3));
 	}
 	
-	//TODO  ->  "INVALID-DATA" in caso di dimensioni incongruenti rispetto a quelle fornite
+	// "INVALID-DATA" in caso di dimensioni incongruenti rispetto a quelle fornite
 	@Test
 	void invalidDataTest() {
 		assertEquals("INVALID-DATA", smdf.stampa("src/files/invalid-data-1.txt", 3, 3));
-		assertEquals("INVALID-DATA", smdf.stampa("src/files/invalid-data-2.txt", 3, 3)); //bug: Da problemi questo file
+		assertEquals("INVALID-DATA", smdf.stampa("src/files/invalid-data-2.txt", 3, 3));
 	}
 	
-	//TODO  ->  "NOT-NUMERIC-VALUE" in caso di valore non numerico presente nel file
+	// "NOT-NUMERIC-VALUE" in caso di valore non numerico presente nel file
+	@Test
+	void notNumericValueTest() {
+		assertEquals("NOT-NUMERIC-VALUE", smdf.stampa("src/files/not-numeric-value-1.txt", 3, 3));
+		assertEquals("NOT-NUMERIC-VALUE", smdf.stampa("src/files/not-numeric-value-2.txt", 3, 3));
+	}
+	
 	//TODO  ->  In caso positivo la matrice viene stampata sotto forma di stringa
 
 }
