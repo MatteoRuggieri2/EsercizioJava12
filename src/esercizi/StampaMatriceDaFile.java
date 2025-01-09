@@ -143,6 +143,12 @@ public class StampaMatriceDaFile {
 				}
 			    
 			    scn.close();
+			    
+			    // Se ci sono meno token nella riga di quelli previsti return false
+			    if (fileColumnCounter < this.numColonne) {
+					return false;
+				}
+			    
 			    fileColumnCounter = 0;
 			    line = br.readLine(); // Leggo la riga successiva e continuo il loop
 			}
@@ -153,6 +159,12 @@ public class StampaMatriceDaFile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		// Se ci sono meno righe di quelle previste return false
+		if (fileRowCounter < this.numRighe) {
+			return false;
+		}
+		
 		return true;
 	}
 	
