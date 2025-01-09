@@ -34,6 +34,12 @@ class StampaMatriceDaFileTest {
 		assertEquals("NOT-NUMERIC-VALUE", smdf.stampa("src/files/not-numeric-value-2.txt", 3, 3));
 	}
 	
-	//TODO  ->  In caso positivo la matrice viene stampata sotto forma di stringa
-
+	// In caso positivo la matrice viene stampata sotto forma di stringa
+	@Test
+	void stampaTest() {
+		String matrixResultStr = "[34, 5, 6],\n" + "[3, 20, 7],\n" + "[1, 0, 8]";
+		String matrixResultStr2 = "[345, 65, 2375, 2],\n" + "[4, 64, 23456, 2]";
+		assertEquals(matrixResultStr, smdf.stampa("src/files/matrice.txt", 3, 3));
+		assertEquals(matrixResultStr2, smdf.stampa("src/files/matrice2.txt", 2, 4));
+	}
 }
